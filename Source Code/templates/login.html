@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login / Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Left overlay */
+    .left-panel {
+      background: linear-gradient(to bottom right, #007acc, #e6f2ff);
+      color: white;
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .left-panel h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .left-panel p {
+      font-size: 16px;
+      color: #f0f8ff;
+    }
+
+    /* Right form panel */
+    .right-panel {
+      background-color: #f0f8ff;
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #007acc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #005a99;
+    }
+
+    .tab {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .tab label {
+      flex: 1;
+      padding: 10px;
+      background-color: #e6f2ff;
+      cursor: pointer;
+      font-weight: bold;
+      color: #003366;
+      border: 1px solid #007acc;
+      border-radius: 6px 6px 0 0;
+    }
+
+    input[name="tab"] {
+      display: none;
+    }
+
+    .form {
+      display: none;
+    }
+
+    #login-tab:checked ~ .forms #login-form,
+    #signup-tab:checked ~ .forms #signup-form {
+      display: block;
+    }
+
+    #login-tab:checked ~ .tab label[for="login-tab"],
+    #signup-tab:checked ~ .tab label[for="signup-tab"] {
+      background-color: white;
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="left-panel">
+    <h1>CKD Predictor</h1>
+    <p>Enter your credentials to log in or sign up and check kidney health prediction.</p>
+  </div>
+
+  <div class="right-panel">
+    <div class="container">
+      <input type="radio" name="tab" id="login-tab" checked>
+      <input type="radio" name="tab" id="signup-tab">
+
+      <div class="tab">
+        <label for="login-tab">Login</label>
+        <label for="signup-tab">Sign Up</label>
+      </div>
+
+      <div class="forms">
+        <!-- Login Form -->
+        <div id="login-form" class="form">
+          <h2>Login</h2>
+          <form method="POST" action="/login">
+            <input type="text" name="username" placeholder="Username" required><br/>
+            <input type="password" name="password" placeholder="Password" required><br/>
+            <input type="submit" value="Login">
+          </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="form">
+          <h2>Sign Up</h2>
+          <form method="POST" action="/signup">
+            <input type="text" name="username" placeholder="Username" required><br/>
+            <input type="email" name="email" placeholder="Gmail" required><br/>
+            <input type="password" name="password" placeholder="Password" required><br/>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required><br/>
+            <input type="submit" value="Sign Up">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predict CKD</title>
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .logout a {
+      text-decoration: none;
+      background-color: #ff4d4d;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .logout a:hover {
+      background-color: #cc0000;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
+      width: 280px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #003366;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-top: 8px;
+      text-align: left;
+      color: #003366;
+      font-size: 13px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #007acc;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    input[type="submit"] {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin-top: 15px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #005a99;
+    }
+
+    h3 {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #006600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logout">
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </div>
+
+  <div class="form-container">
+    <h2>Enter Patient Details</h2>
+    <form method="POST">
+      <label>Age:</label>
+      <input name="age" type="text" value="{{ request.form.age or '' }}">
+
+      <label>Specific Gravity (sg):</label>
+      <input name="sg" type="text" value="{{ request.form.sg or '' }}">
+
+      <label>Albumin (al):</label>
+      <input name="al" type="text" value="{{ request.form.al or '' }}">
+
+      <label>Blood Urea (bu):</label>
+      <input name="bu" type="text" value="{{ request.form.bu or '' }}">
+
+      <label>Serum Creatinine (sc):</label>
+      <input name="sc" type="text" value="{{ request.form.sc or '' }}">
+
+      <label>Hemoglobin (hemo):</label>
+      <input name="hemo" type="text" value="{{ request.form.hemo or '' }}">
+
+      <label>Hypertension (htn) [1: Yes, 0: No]:</label>
+      <input name="htn" type="text" value="{{ request.form.htn or '' }}">
+
+      <label>Diabetes Mellitus (dm) [1: Yes, 0: No]:</label>
+      <input name="dm" type="text" value="{{ request.form.dm or '' }}">
+
+      <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+      <h3>{{ prediction }}</h3>
+    {% endif %}
+  </div>
+</body>
+</html>
